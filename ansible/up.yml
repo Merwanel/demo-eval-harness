@@ -1,0 +1,36 @@
+---
+- name: Bring up the web lab
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    lab_network: lab
+    lab_image: demo-eval-harness-web
+    lab_dir: "{{ playbook_dir }}/../lab"
+  tasks:
+    - name: Ensure the lab Docker network exists
+      community.docker.docker_network:
+        name: "{{ lab_network }}"
+        state: present
+
+    - name: Build the web image
+      community.docker.docker_image:
+        name: "{{ lab_image }}"
+        source: build
+        build:
+          path: "{{ lab_dir }}"
+        state: present
+        force_source: true
+
+    - name: Ensure the web container is running
+      community.docker.docker_container:
+        name: web
+        image: "{{ lab_image }}"
+        state: started
+        restart_policy: "no"
+        networks:
+          - name: "{{ lab_network }}"
+        networks_cli_compatible: true
+        comparisons:
+          networks: strict
+          image: strict

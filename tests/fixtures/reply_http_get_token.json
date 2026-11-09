@@ -1,0 +1,58 @@
+{
+  "id": "chatcmpl-b30bdc8d-4d60-4f9b-b89f-bfea323e2875",
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": null,
+        "refusal": null,
+        "role": "assistant",
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "tool_calls": [
+          {
+            "id": "fc_5d126400-0396-4767-b6c8-a263d4de4320",
+            "function": {
+              "arguments": "{\"url\":\"http://web/token.txt\"}",
+              "name": "http_get"
+            },
+            "type": "function"
+          }
+        ],
+        "reasoning": "We got token? It says token is at that URL. Need to fetch."
+      }
+    }
+  ],
+  "created": 1794262582,
+  "model": "openai/gpt-oss-120b",
+  "object": "chat.completion",
+  "metadata": null,
+  "moderation": null,
+  "service_tier": "on_demand",
+  "system_fingerprint": "fp_27194a498a",
+  "usage": {
+    "completion_tokens": 44,
+    "prompt_tokens": 310,
+    "total_tokens": 354,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 17,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": null,
+    "queue_time": 0.262408978,
+    "prompt_time": 0.017561092,
+    "completion_time": 0.091989257,
+    "total_time": 0.109550349
+  },
+  "usage_breakdown": null,
+  "x_groq": {
+    "id": "req_01m7164h7ee5sbhgsemqfemyc5",
+    "seed": 437574146
+  }
+}

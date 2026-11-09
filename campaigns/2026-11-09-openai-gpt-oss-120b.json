@@ -1,0 +1,1053 @@
+{
+  "scenario": "web-token",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "trials": 5,
+  "successes": 5,
+  "agent_failures": 0,
+  "harness_errors": 0,
+  "runs": [
+    {
+      "trial": 1,
+      "outcome": "success",
+      "answer": "LAB-TOKEN-1842",
+      "steps": [
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/",
+          "observation": "The token is at http://web/token.txt",
+          "raw_reply": {
+            "id": "chatcmpl-73c2f49e-9ae9-4c86-bf67-d25139c12168",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_e3cd7f12-01f5-4742-93c3-eb24c196c1c0",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to navigate."
+                }
+              }
+            ],
+            "created": 1794262778,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_998410db10",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 306,
+              "total_tokens": 341,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 6,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": null,
+              "queue_time": 0.349732622,
+              "prompt_time": 0.061757883,
+              "completion_time": 0.074167727,
+              "total_time": 0.13592561
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ag7heqbb1jzye75vdm5y",
+              "seed": 1437397679
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/token.txt",
+          "observation": "LAB-TOKEN-1842",
+          "raw_reply": {
+            "id": "chatcmpl-8bf0fc0c-3b58-4e6b-b578-a56b575759ef",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_343d3ae4-d5ef-4c6f-9edd-7bb6cdf0c493",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/token.txt\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to fetch token.txt."
+                }
+              }
+            ],
+            "created": 1794262778,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c800245357",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 342,
+              "total_tokens": 377,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": null,
+              "queue_time": 0.012823933,
+              "prompt_time": 0.016198105,
+              "completion_time": 0.075393293,
+              "total_time": 0.091591398
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716agsred7a9yh4e7d2vfn4",
+              "seed": 342544729
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "submit",
+          "tool_input": "LAB-TOKEN-1842",
+          "observation": "submitted",
+          "raw_reply": {
+            "id": "chatcmpl-a5c61100-8bd8-4231-9de7-feea5908af74",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_3966111d-1580-4d79-8c02-2e989416660c",
+                      "function": {
+                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
+                        "name": "submit"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We have token. Need submit."
+                }
+              }
+            ],
+            "created": 1794262779,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c15aa9c1b7",
+            "usage": {
+              "completion_tokens": 34,
+              "prompt_tokens": 376,
+              "total_tokens": 410,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.262106655,
+              "prompt_time": 0.005758708,
+              "completion_time": 0.071323069,
+              "total_time": 0.077081777
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716agzqencbsf0bmd2g91qe",
+              "seed": 133405077
+            }
+          }
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "outcome": "success",
+      "answer": "LAB-TOKEN-1842",
+      "steps": [
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/",
+          "observation": "The token is at http://web/token.txt",
+          "raw_reply": {
+            "id": "chatcmpl-b5c27d9d-4101-43ca-a492-d0659e5131ae",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_9eebe9a7-4cc3-4e9f-9fb6-7a9a5ded5775",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to browse."
+                }
+              }
+            ],
+            "created": 1794262779,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c800245357",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 306,
+              "total_tokens": 341,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 6,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.007584572,
+              "prompt_time": 0.003431779,
+              "completion_time": 0.074784431,
+              "total_time": 0.07821621
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ahcte83sc9sg8ggvjbw2",
+              "seed": 1682909309
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/token.txt",
+          "observation": "LAB-TOKEN-1842",
+          "raw_reply": {
+            "id": "chatcmpl-46a99de6-a6a6-4f01-83e6-d105f1b5b5c0",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_3142da36-1ba3-4384-a4ec-29eb173546cf",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/token.txt\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to fetch token.txt."
+                }
+              }
+            ],
+            "created": 1794262779,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_4200b3f836",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 342,
+              "total_tokens": 377,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": null,
+              "queue_time": 0.039638175,
+              "prompt_time": 0.013224007,
+              "completion_time": 0.072719697,
+              "total_time": 0.085943704
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ahjmeaav254sse4gtsjc",
+              "seed": 1788517467
+            }
+          }
+        },
+        {
+          "model_response": "The token has been found.",
+          "tool": "submit",
+          "tool_input": "LAB-TOKEN-1842",
+          "observation": "submitted",
+          "raw_reply": {
+            "id": "chatcmpl-12295c97-6cc8-4397-a719-dfaf4c120039",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": "The token has been found.",
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_5c67c40e-a0e5-4d94-8fa6-591b9448242b",
+                      "function": {
+                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
+                        "name": "submit"
+                      },
+                      "type": "function"
+                    }
+                  ]
+                }
+              }
+            ],
+            "created": 1794262780,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c15aa9c1b7",
+            "usage": {
+              "completion_tokens": 34,
+              "prompt_tokens": 376,
+              "total_tokens": 410,
+              "completion_tokens_details": null,
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.262399644,
+              "prompt_time": 0.540397419,
+              "completion_time": 0.071584563,
+              "total_time": 0.611981982
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ahspebxs5zee7c5zbyrb",
+              "seed": 1521667327
+            }
+          }
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "outcome": "success",
+      "answer": "LAB-TOKEN-1842",
+      "steps": [
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/",
+          "observation": "The token is at http://web/token.txt",
+          "raw_reply": {
+            "id": "chatcmpl-1748bfa9-74cd-42e8-94c6-94d4148831d7",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_a4689bc6-93e5-48f9-a27a-8b38be880cdf",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to browse."
+                }
+              }
+            ],
+            "created": 1794262780,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c800245357",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 306,
+              "total_tokens": 341,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 6,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.004867101,
+              "prompt_time": 0.003412389,
+              "completion_time": 0.102487317,
+              "total_time": 0.105899706
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ajqpetmsz9j5581xa2zg",
+              "seed": 1740968658
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/token.txt",
+          "observation": "LAB-TOKEN-1842",
+          "raw_reply": {
+            "id": "chatcmpl-3ecdf511-492a-4700-8bc4-793634479abe",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_351010cb-f5ed-4dd5-84b8-cc2443db0a70",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/token.txt\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to fetch token.txt."
+                }
+              }
+            ],
+            "created": 1794262781,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_998410db10",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 342,
+              "total_tokens": 377,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.345662589,
+              "prompt_time": 0.029848032,
+              "completion_time": 0.294683406,
+              "total_time": 0.324531438
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ajy2enzsxy3vy9m2fqww",
+              "seed": 1890494240
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "submit",
+          "tool_input": "LAB-TOKEN-1842",
+          "observation": "submitted",
+          "raw_reply": {
+            "id": "chatcmpl-fe283688-82d4-4814-9b32-f5dd52250f19",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_2c9f54a8-3075-48c3-ac09-cf731e5e4cca",
+                      "function": {
+                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
+                        "name": "submit"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We have token. Need submit."
+                }
+              }
+            ],
+            "created": 1794262781,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c800245357",
+            "usage": {
+              "completion_tokens": 38,
+              "prompt_tokens": 376,
+              "total_tokens": 414,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.005107741,
+              "prompt_time": 0.008809584,
+              "completion_time": 0.080826448,
+              "total_time": 0.089636032
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716aks5e20t5pe70bcq2s78",
+              "seed": 239765595
+            }
+          }
+        }
+      ]
+    },
+    {
+      "trial": 4,
+      "outcome": "success",
+      "answer": "LAB-TOKEN-1842",
+      "steps": [
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/",
+          "observation": "The token is at http://web/token.txt",
+          "raw_reply": {
+            "id": "chatcmpl-cbc01485-496e-480c-9e2d-cee3029b4fe1",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_87134b2b-67db-4b1a-8254-06279b2e84bc",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to browse."
+                }
+              }
+            ],
+            "created": 1794262782,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_7a4ab09ae4",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 306,
+              "total_tokens": 341,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 6,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": null,
+              "queue_time": 0.347539677,
+              "prompt_time": 0.014577202,
+              "completion_time": 0.074599722,
+              "total_time": 0.089176924
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716akyqevksqaakygmdvgc6",
+              "seed": 1689480401
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/token.txt",
+          "observation": "LAB-TOKEN-1842",
+          "raw_reply": {
+            "id": "chatcmpl-1ef2f5d4-4f10-43e1-9f52-e8a1d709b243",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_b9ea5184-f46a-4359-93cc-4d8e94774ca9",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/token.txt\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We got token? The response says \"The token is at http://web/token.txt\". Need to fetch that."
+                }
+              }
+            ],
+            "created": 1794262782,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_4200b3f836",
+            "usage": {
+              "completion_tokens": 51,
+              "prompt_tokens": 342,
+              "total_tokens": 393,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 24,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.039384643,
+              "prompt_time": 0.030290321,
+              "completion_time": 0.105500704,
+              "total_time": 0.135791025
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716amfwezrsgj9zgnw8r156",
+              "seed": 794698860
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "submit",
+          "tool_input": "LAB-TOKEN-1842",
+          "observation": "submitted",
+          "raw_reply": {
+            "id": "chatcmpl-ab77b877-a07c-4542-a4be-2c07e6e02707",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_6ad5811f-ab33-4a30-8171-465f6b67f139",
+                      "function": {
+                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
+                        "name": "submit"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We have token. Need to submit."
+                }
+              }
+            ],
+            "created": 1794262783,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_998410db10",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 376,
+              "total_tokens": 411,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 9,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.345904183,
+              "prompt_time": 0.006243031,
+              "completion_time": 0.258801962,
+              "total_time": 0.265044993
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716amrje21884wxtxjvvrjr",
+              "seed": 204165556
+            }
+          }
+        }
+      ]
+    },
+    {
+      "trial": 5,
+      "outcome": "success",
+      "answer": "LAB-TOKEN-1842",
+      "steps": [
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/",
+          "observation": "The token is at http://web/token.txt",
+          "raw_reply": {
+            "id": "chatcmpl-9de4facf-a5b2-46ca-b6a4-60f292c93f46",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_d20ba22c-47db-4608-a0b0-05de23479f37",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We need to browse."
+                }
+              }
+            ],
+            "created": 1794262783,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_02b0d31eca",
+            "usage": {
+              "completion_tokens": 35,
+              "prompt_tokens": 306,
+              "total_tokens": 341,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 6,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": null,
+              "queue_time": 0.038601364,
+              "prompt_time": 0.013397964,
+              "completion_time": 0.073922551,
+              "total_time": 0.087320515
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716anehe1jb04ffv3wfmb6z",
+              "seed": 600067254
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "http_get",
+          "tool_input": "http://web/token.txt",
+          "observation": "LAB-TOKEN-1842",
+          "raw_reply": {
+            "id": "chatcmpl-6cfe565b-e164-4358-9061-34adabd25138",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_3540f28a-35c7-482d-ad9c-d37594730589",
+                      "function": {
+                        "arguments": "{\"url\":\"http://web/token.txt\"}",
+                        "name": "http_get"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We got token location. Need to fetch it."
+                }
+              }
+            ],
+            "created": 1794262784,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_5082008e34",
+            "usage": {
+              "completion_tokens": 38,
+              "prompt_tokens": 342,
+              "total_tokens": 380,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 11,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": null,
+              "queue_time": 0.222321776,
+              "prompt_time": 0.034521396,
+              "completion_time": 0.080844328,
+              "total_time": 0.115365724
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716annnehjbrgjjyxkjqazj",
+              "seed": 1022728773
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "submit",
+          "tool_input": "LAB-TOKEN-1842",
+          "observation": "submitted",
+          "raw_reply": {
+            "id": "chatcmpl-c2690e9f-1a95-4a45-9d64-d208807bd6c4",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_bd945134-60ac-4875-a011-450d09c6497e",
+                      "function": {
+                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
+                        "name": "submit"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "We have token. Need submit."
+                }
+              }
+            ],
+            "created": 1794262784,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_c800245357",
+            "usage": {
+              "completion_tokens": 34,
+              "prompt_tokens": 376,
+              "total_tokens": 410,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.005061682,
+              "prompt_time": 0.006524932,
+              "completion_time": 0.072615976,
+              "total_time": 0.079140908
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m716ap35e8rtpn8y4jyxrm10",
+              "seed": 47575017
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

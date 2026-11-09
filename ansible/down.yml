@@ -1,0 +1,18 @@
+---
+- name: Tear down the web lab
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+    lab_network: lab
+  tasks:
+    - name: Remove the web container
+      community.docker.docker_container:
+        name: web
+        state: absent
+
+    - name: Remove the lab Docker network
+      community.docker.docker_network:
+        name: "{{ lab_network }}"
+        state: absent
+        force: true

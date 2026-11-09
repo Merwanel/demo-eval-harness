@@ -1,0 +1,13 @@
+.venv
+.git
+.github
+campaigns
+campaign.json
+api_key_*
+.env
+__pycache__
+*.pyc
+tests
+ansible
+README.md
+requirements-host.txt
