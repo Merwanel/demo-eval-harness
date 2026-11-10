@@ -15,11 +15,11 @@ sequenceDiagram
             Runner->>Tools: http_get(url)
             Tools->>web: GET (host web only)
             web-->>Tools: body
-            Tools-->>Runner: observation
+            Tools-->>Runner: body or error
+            Runner->>Model: observation
         else submit
-            Runner->>Runner: score answer
+            Runner->>Runner: score answer and stop
         end
-        Runner->>Model: observation
     end
     Runner->>Runner: write campaign.json
 ```
