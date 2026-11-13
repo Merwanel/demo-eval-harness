@@ -7,6 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY harness/ harness/
 COPY prompts/ prompts/
+COPY scenario.yml scenario.yml
+
 
 # campaign.json is bind-mounted at runtime
 RUN touch /app/campaign.json

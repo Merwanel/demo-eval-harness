@@ -1,31 +1,79 @@
 ---
-- name: Bring up the web lab
+- name: Bring up the lab from scenario.yml
   hosts: localhost
   connection: local
   gather_facts: false
   vars:
+    ansible_python_interpreter: "{{ playbook_dir }}/../.venv/bin/python"
     lab_network: lab
-    lab_image: demo-eval-harness-web
     lab_dir: "{{ playbook_dir }}/../lab"
+    scenario_path: "{{ playbook_dir }}/../scenario.yml"
+    stage_root: /tmp/demo-eval-harness-lab
   tasks:
+    - name: Load scenario.yml
+      ansible.builtin.include_vars:
+        file: "{{ scenario_path }}"
+        name: scenario
+
     - name: Ensure the lab Docker network exists
       community.docker.docker_network:
         name: "{{ lab_network }}"
         state: present
 
-    - name: Build the web image
+    - name: Clear staging root
+      ansible.builtin.file:
+        path: "{{ stage_root }}"
+        state: absent
+
+    - name: Create staging root
+      ansible.builtin.file:
+        path: "{{ stage_root }}"
+        state: directory
+        mode: "0755"
+
+    - name: Stage each host build directory
+      ansible.builtin.file:
+        path: "{{ stage_root }}/{{ item.name }}/pages"
+        state: directory
+        mode: "0755"
+      loop: "{{ scenario.hosts }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Copy the Nginx image definition into each host stage
+      ansible.builtin.copy:
+        src: "{{ lab_dir }}/{{ item.1 }}"
+        dest: "{{ stage_root }}/{{ item.0.name }}/{{ item.1 }}"
+        mode: "0644"
+      loop: "{{ scenario.hosts | product(['Dockerfile', 'nginx.conf']) | list }}"
+      loop_control:
+        label: "{{ item.0.name }}/{{ item.1 }}"
+
+    - name: Write pages from scenario.yml
+      ansible.builtin.copy:
+        content: "{{ item.1.body }}"
+        dest: "{{ stage_root }}/{{ item.0.name }}/pages/{{ item.1.path }}"
+        mode: "0644"
+      loop: "{{ scenario.hosts | subelements('pages') }}"
+      loop_control:
+        label: "{{ item.0.name }}/{{ item.1.path }}"
+
+    - name: Build an image for each host
       community.docker.docker_image:
-        name: "{{ lab_image }}"
+        name: "demo-eval-harness-{{ item.name }}"
         source: build
         build:
-          path: "{{ lab_dir }}"
+          path: "{{ stage_root }}/{{ item.name }}"
         state: present
         force_source: true
+      loop: "{{ scenario.hosts }}"
+      loop_control:
+        label: "{{ item.name }}"
 
-    - name: Ensure the web container is running
+    - name: Ensure each host container is running
       community.docker.docker_container:
-        name: web
-        image: "{{ lab_image }}"
+        name: "{{ item.name }}"
+        image: "demo-eval-harness-{{ item.name }}"
         state: started
         restart_policy: "no"
         networks:
@@ -34,3 +82,6 @@
         comparisons:
           networks: strict
           image: strict
+      loop: "{{ scenario.hosts }}"
+      loop_control:
+        label: "{{ item.name }}"

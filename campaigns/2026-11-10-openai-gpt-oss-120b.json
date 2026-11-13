@@ -18,7 +18,7 @@
           "tool_input": "http://web/",
           "observation": "The token is at http://web/token.txt",
           "raw_reply": {
-            "id": "chatcmpl-73c2f49e-9ae9-4c86-bf67-d25139c12168",
+            "id": "chatcmpl-061453ba-28ad-49b9-bd2e-9fbbbe21ee2a",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -33,7 +33,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_e3cd7f12-01f5-4742-93c3-eb24c196c1c0",
+                      "id": "fc_9e4fd9e7-3f6c-4fa4-86f0-514e335e2bee",
                       "function": {
                         "arguments": "{\"url\":\"http://web/\"}",
                         "name": "http_get"
@@ -41,17 +41,17 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We need to navigate."
+                  "reasoning": "We need to browse."
                 }
               }
             ],
-            "created": 1794262778,
+            "created": 1794317575,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_998410db10",
+            "system_fingerprint": "fp_64b2f1c926",
             "usage": {
               "completion_tokens": 35,
               "prompt_tokens": 306,
@@ -64,15 +64,15 @@
                 "text_tokens": null
               },
               "prompt_tokens_details": null,
-              "queue_time": 0.349732622,
-              "prompt_time": 0.061757883,
-              "completion_time": 0.074167727,
-              "total_time": 0.13592561
+              "queue_time": 0.078201548,
+              "prompt_time": 0.042230352,
+              "completion_time": 0.07403378,
+              "total_time": 0.116264132
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716ag7heqbb1jzye75vdm5y",
-              "seed": 1437397679
+              "id": "req_01m72tjrt4ed995s31s70cg865",
+              "seed": 399332203
             }
           }
         },
@@ -82,7 +82,7 @@
           "tool_input": "http://web/token.txt",
           "observation": "LAB-TOKEN-1842",
           "raw_reply": {
-            "id": "chatcmpl-8bf0fc0c-3b58-4e6b-b578-a56b575759ef",
+            "id": "chatcmpl-8a03945a-b582-4f4e-b7ea-691a5729abeb",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -97,7 +97,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_343d3ae4-d5ef-4c6f-9edd-7bb6cdf0c493",
+                      "id": "fc_b96baf11-fdd1-49c0-8d21-eb7f19169aa3",
                       "function": {
                         "arguments": "{\"url\":\"http://web/token.txt\"}",
                         "name": "http_get"
@@ -105,55 +105,55 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We need to fetch token.txt."
+                  "reasoning": "We got token location. Need to fetch."
                 }
               }
             ],
-            "created": 1794262778,
+            "created": 1794317575,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_c800245357",
+            "system_fingerprint": "fp_c652c0ffaa",
             "usage": {
-              "completion_tokens": 35,
+              "completion_tokens": 41,
               "prompt_tokens": 342,
-              "total_tokens": 377,
+              "total_tokens": 383,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 8,
+                "reasoning_tokens": 10,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
               "prompt_tokens_details": null,
-              "queue_time": 0.012823933,
-              "prompt_time": 0.016198105,
-              "completion_time": 0.075393293,
-              "total_time": 0.091591398
+              "queue_time": 0.178934683,
+              "prompt_time": 0.018073768,
+              "completion_time": 0.088271356,
+              "total_time": 0.106345124
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716agsred7a9yh4e7d2vfn4",
-              "seed": 342544729
+              "id": "req_01m72tjs3xeypb72y8ka4jvfhw",
+              "seed": 1102881051
             }
           }
         },
         {
-          "model_response": "",
+          "model_response": "The lab token is `LAB-TOKEN-1842`.",
           "tool": "submit",
           "tool_input": "LAB-TOKEN-1842",
           "observation": "submitted",
           "raw_reply": {
-            "id": "chatcmpl-a5c61100-8bd8-4231-9de7-feea5908af74",
+            "id": "chatcmpl-96c44157-14a8-4acd-a6a3-693a90c99ca2",
             "choices": [
               {
                 "finish_reason": "tool_calls",
                 "index": 0,
                 "logprobs": null,
                 "message": {
-                  "content": null,
+                  "content": "The lab token is `LAB-TOKEN-1842`.",
                   "refusal": null,
                   "role": "assistant",
                   "annotations": null,
@@ -161,7 +161,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_3966111d-1580-4d79-8c02-2e989416660c",
+                      "id": "fc_fc41b068-8755-441f-b503-1d6ad58d4ba4",
                       "function": {
                         "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
                         "name": "submit"
@@ -169,44 +169,38 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We have token. Need submit."
+                  "reasoning": "We need to submit."
                 }
               }
             ],
-            "created": 1794262779,
+            "created": 1794317575,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_c15aa9c1b7",
+            "system_fingerprint": "fp_49bfac06f1",
             "usage": {
-              "completion_tokens": 34,
+              "completion_tokens": 50,
               "prompt_tokens": 376,
-              "total_tokens": 410,
+              "total_tokens": 426,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 8,
+                "reasoning_tokens": 6,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
-              "prompt_tokens_details": {
-                "audio_tokens": null,
-                "cache_write_tokens": null,
-                "cached_tokens": 256,
-                "image_tokens": null,
-                "text_tokens": null
-              },
-              "queue_time": 0.262106655,
-              "prompt_time": 0.005758708,
-              "completion_time": 0.071323069,
-              "total_time": 0.077081777
+              "prompt_tokens_details": null,
+              "queue_time": 0.00565825,
+              "prompt_time": 0.020938585,
+              "completion_time": 0.106847547,
+              "total_time": 0.127786132
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716agzqencbsf0bmd2g91qe",
-              "seed": 133405077
+              "id": "req_01m72tjsgcesh807ga2e0vnx86",
+              "seed": 1787869693
             }
           }
         }
@@ -223,7 +217,7 @@
           "tool_input": "http://web/",
           "observation": "The token is at http://web/token.txt",
           "raw_reply": {
-            "id": "chatcmpl-b5c27d9d-4101-43ca-a492-d0659e5131ae",
+            "id": "chatcmpl-d09516e8-d54d-4e44-8c43-b4d401832bd0",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -238,7 +232,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_9eebe9a7-4cc3-4e9f-9fb6-7a9a5ded5775",
+                      "id": "fc_8d280491-3332-4ec4-9483-9b527da15273",
                       "function": {
                         "arguments": "{\"url\":\"http://web/\"}",
                         "name": "http_get"
@@ -250,13 +244,13 @@
                 }
               }
             ],
-            "created": 1794262779,
+            "created": 1794317576,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_c800245357",
+            "system_fingerprint": "fp_49bfac06f1",
             "usage": {
               "completion_tokens": 35,
               "prompt_tokens": 306,
@@ -275,15 +269,15 @@
                 "image_tokens": null,
                 "text_tokens": null
               },
-              "queue_time": 0.007584572,
-              "prompt_time": 0.003431779,
-              "completion_time": 0.074784431,
-              "total_time": 0.07821621
+              "queue_time": 0.004800116,
+              "prompt_time": 0.400744928,
+              "completion_time": 0.165872741,
+              "total_time": 0.566617669
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716ahcte83sc9sg8ggvjbw2",
-              "seed": 1682909309
+              "id": "req_01m72tjsqve5dvk5sd95vyakkz",
+              "seed": 1438692393
             }
           }
         },
@@ -293,7 +287,7 @@
           "tool_input": "http://web/token.txt",
           "observation": "LAB-TOKEN-1842",
           "raw_reply": {
-            "id": "chatcmpl-46a99de6-a6a6-4f01-83e6-d105f1b5b5c0",
+            "id": "chatcmpl-95f7c1c9-e172-4c43-8219-707b7c9ea359",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -308,7 +302,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_3142da36-1ba3-4384-a4ec-29eb173546cf",
+                      "id": "fc_20d359d4-dc0d-434c-ad32-667a30d72e7d",
                       "function": {
                         "arguments": "{\"url\":\"http://web/token.txt\"}",
                         "name": "http_get"
@@ -316,85 +310,28 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We need to fetch token.txt."
+                  "reasoning": "We got a response: \"The token is at http://web/token.txt\". Need to fetch that."
                 }
               }
             ],
-            "created": 1794262779,
+            "created": 1794317576,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_4200b3f836",
+            "system_fingerprint": "fp_64b2f1c926",
             "usage": {
-              "completion_tokens": 35,
+              "completion_tokens": 49,
               "prompt_tokens": 342,
-              "total_tokens": 377,
+              "total_tokens": 391,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 8,
+                "reasoning_tokens": 22,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
-              "prompt_tokens_details": null,
-              "queue_time": 0.039638175,
-              "prompt_time": 0.013224007,
-              "completion_time": 0.072719697,
-              "total_time": 0.085943704
-            },
-            "usage_breakdown": null,
-            "x_groq": {
-              "id": "req_01m716ahjmeaav254sse4gtsjc",
-              "seed": 1788517467
-            }
-          }
-        },
-        {
-          "model_response": "The token has been found.",
-          "tool": "submit",
-          "tool_input": "LAB-TOKEN-1842",
-          "observation": "submitted",
-          "raw_reply": {
-            "id": "chatcmpl-12295c97-6cc8-4397-a719-dfaf4c120039",
-            "choices": [
-              {
-                "finish_reason": "tool_calls",
-                "index": 0,
-                "logprobs": null,
-                "message": {
-                  "content": "The token has been found.",
-                  "refusal": null,
-                  "role": "assistant",
-                  "annotations": null,
-                  "audio": null,
-                  "function_call": null,
-                  "tool_calls": [
-                    {
-                      "id": "fc_5c67c40e-a0e5-4d94-8fa6-591b9448242b",
-                      "function": {
-                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
-                        "name": "submit"
-                      },
-                      "type": "function"
-                    }
-                  ]
-                }
-              }
-            ],
-            "created": 1794262780,
-            "model": "openai/gpt-oss-120b",
-            "object": "chat.completion",
-            "metadata": null,
-            "moderation": null,
-            "service_tier": "on_demand",
-            "system_fingerprint": "fp_c15aa9c1b7",
-            "usage": {
-              "completion_tokens": 34,
-              "prompt_tokens": 376,
-              "total_tokens": 410,
-              "completion_tokens_details": null,
               "prompt_tokens_details": {
                 "audio_tokens": null,
                 "cache_write_tokens": null,
@@ -402,15 +339,85 @@
                 "image_tokens": null,
                 "text_tokens": null
               },
-              "queue_time": 0.262399644,
-              "prompt_time": 0.540397419,
-              "completion_time": 0.071584563,
-              "total_time": 0.611981982
+              "queue_time": 0.038600276,
+              "prompt_time": 0.0076312,
+              "completion_time": 0.106529092,
+              "total_time": 0.114160292
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716ahspebxs5zee7c5zbyrb",
-              "seed": 1521667327
+              "id": "req_01m72tjtctexftdb0hdcfejn5d",
+              "seed": 1429670720
+            }
+          }
+        },
+        {
+          "model_response": "",
+          "tool": "submit",
+          "tool_input": "LAB-TOKEN-1842",
+          "observation": "submitted",
+          "raw_reply": {
+            "id": "chatcmpl-6855d379-a006-4789-be05-3b4ed8879eef",
+            "choices": [
+              {
+                "finish_reason": "tool_calls",
+                "index": 0,
+                "logprobs": null,
+                "message": {
+                  "content": null,
+                  "refusal": null,
+                  "role": "assistant",
+                  "annotations": null,
+                  "audio": null,
+                  "function_call": null,
+                  "tool_calls": [
+                    {
+                      "id": "fc_349c5f92-7f25-4622-b328-c8de1388b444",
+                      "function": {
+                        "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
+                        "name": "submit"
+                      },
+                      "type": "function"
+                    }
+                  ],
+                  "reasoning": "Now submit."
+                }
+              }
+            ],
+            "created": 1794317577,
+            "model": "openai/gpt-oss-120b",
+            "object": "chat.completion",
+            "metadata": null,
+            "moderation": null,
+            "service_tier": "on_demand",
+            "system_fingerprint": "fp_49bfac06f1",
+            "usage": {
+              "completion_tokens": 27,
+              "prompt_tokens": 376,
+              "total_tokens": 403,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": null,
+                "reasoning_tokens": 4,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.004685146,
+              "prompt_time": 0.049473734,
+              "completion_time": 0.104079862,
+              "total_time": 0.153553596
+            },
+            "usage_breakdown": null,
+            "x_groq": {
+              "id": "req_01m72tjtwqe6fv4wvyjwvkzxpn",
+              "seed": 254050202
             }
           }
         }
@@ -427,7 +434,7 @@
           "tool_input": "http://web/",
           "observation": "The token is at http://web/token.txt",
           "raw_reply": {
-            "id": "chatcmpl-1748bfa9-74cd-42e8-94c6-94d4148831d7",
+            "id": "chatcmpl-ba1581bb-2601-405c-8831-703d777d712a",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -442,7 +449,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_a4689bc6-93e5-48f9-a27a-8b38be880cdf",
+                      "id": "fc_7265526e-e9ed-41af-9e7c-8884191b91ca",
                       "function": {
                         "arguments": "{\"url\":\"http://web/\"}",
                         "name": "http_get"
@@ -454,13 +461,13 @@
                 }
               }
             ],
-            "created": 1794262780,
+            "created": 1794317577,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_c800245357",
+            "system_fingerprint": "fp_49bfac06f1",
             "usage": {
               "completion_tokens": 35,
               "prompt_tokens": 306,
@@ -479,15 +486,15 @@
                 "image_tokens": null,
                 "text_tokens": null
               },
-              "queue_time": 0.004867101,
-              "prompt_time": 0.003412389,
-              "completion_time": 0.102487317,
-              "total_time": 0.105899706
+              "queue_time": 0.004929595,
+              "prompt_time": 0.025341299,
+              "completion_time": 0.073932175,
+              "total_time": 0.099273474
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716ajqpetmsz9j5581xa2zg",
-              "seed": 1740968658
+              "id": "req_01m72tjv4memwrpsn16ph124fz",
+              "seed": 1652505135
             }
           }
         },
@@ -497,7 +504,7 @@
           "tool_input": "http://web/token.txt",
           "observation": "LAB-TOKEN-1842",
           "raw_reply": {
-            "id": "chatcmpl-3ecdf511-492a-4700-8bc4-793634479abe",
+            "id": "chatcmpl-6bd9b3f6-776f-4f03-ad45-247b5417e74a",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -512,7 +519,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_351010cb-f5ed-4dd5-84b8-cc2443db0a70",
+                      "id": "fc_df638bbf-7f7d-4e08-945c-4c65c4ccab6c",
                       "function": {
                         "arguments": "{\"url\":\"http://web/token.txt\"}",
                         "name": "http_get"
@@ -520,25 +527,25 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We need to fetch token.txt."
+                  "reasoning": "We got token location. Need to fetch it."
                 }
               }
             ],
-            "created": 1794262781,
+            "created": 1794317577,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_998410db10",
+            "system_fingerprint": "fp_49bfac06f1",
             "usage": {
-              "completion_tokens": 35,
+              "completion_tokens": 38,
               "prompt_tokens": 342,
-              "total_tokens": 377,
+              "total_tokens": 380,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 8,
+                "reasoning_tokens": 11,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
@@ -549,32 +556,32 @@
                 "image_tokens": null,
                 "text_tokens": null
               },
-              "queue_time": 0.345662589,
-              "prompt_time": 0.029848032,
-              "completion_time": 0.294683406,
-              "total_time": 0.324531438
+              "queue_time": 0.004545782,
+              "prompt_time": 0.007827131,
+              "completion_time": 0.080108586,
+              "total_time": 0.087935717
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716ajy2enzsxy3vy9m2fqww",
-              "seed": 1890494240
+              "id": "req_01m72tjvbme5nrrharj1p1dpjc",
+              "seed": 629754549
             }
           }
         },
         {
-          "model_response": "",
+          "model_response": "The lab token is **LAB-TOKEN-1842**.",
           "tool": "submit",
           "tool_input": "LAB-TOKEN-1842",
           "observation": "submitted",
           "raw_reply": {
-            "id": "chatcmpl-fe283688-82d4-4814-9b32-f5dd52250f19",
+            "id": "chatcmpl-365f1321-9016-4d96-9a99-1577f39fad5a",
             "choices": [
               {
                 "finish_reason": "tool_calls",
                 "index": 0,
                 "logprobs": null,
                 "message": {
-                  "content": null,
+                  "content": "The lab token is **LAB-TOKEN-1842**.",
                   "refusal": null,
                   "role": "assistant",
                   "annotations": null,
@@ -582,7 +589,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_2c9f54a8-3075-48c3-ac09-cf731e5e4cca",
+                      "id": "fc_29b60b67-ff56-48d6-be85-532a7ec62031",
                       "function": {
                         "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
                         "name": "submit"
@@ -590,44 +597,38 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We have token. Need submit."
+                  "reasoning": "We need to submit token."
                 }
               }
             ],
-            "created": 1794262781,
+            "created": 1794317578,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_c800245357",
+            "system_fingerprint": "fp_86dc843b12",
             "usage": {
-              "completion_tokens": 38,
+              "completion_tokens": 52,
               "prompt_tokens": 376,
-              "total_tokens": 414,
+              "total_tokens": 428,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 8,
+                "reasoning_tokens": 7,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
-              "prompt_tokens_details": {
-                "audio_tokens": null,
-                "cache_write_tokens": null,
-                "cached_tokens": 256,
-                "image_tokens": null,
-                "text_tokens": null
-              },
-              "queue_time": 0.005107741,
-              "prompt_time": 0.008809584,
-              "completion_time": 0.080826448,
-              "total_time": 0.089636032
+              "prompt_tokens_details": null,
+              "queue_time": 0.261719556,
+              "prompt_time": 0.021297226,
+              "completion_time": 0.110302251,
+              "total_time": 0.131599477
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716aks5e20t5pe70bcq2s78",
-              "seed": 239765595
+              "id": "req_01m72tjvhtefk8zpvnw3e662v1",
+              "seed": 141875542
             }
           }
         }
@@ -644,7 +645,7 @@
           "tool_input": "http://web/",
           "observation": "The token is at http://web/token.txt",
           "raw_reply": {
-            "id": "chatcmpl-cbc01485-496e-480c-9e2d-cee3029b4fe1",
+            "id": "chatcmpl-a16d8ae5-48d5-4e47-b946-1f41fea5dece",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -659,7 +660,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_87134b2b-67db-4b1a-8254-06279b2e84bc",
+                      "id": "fc_c513eeef-a22f-4eef-8b7f-755cef8a30d6",
                       "function": {
                         "arguments": "{\"url\":\"http://web/\"}",
                         "name": "http_get"
@@ -671,13 +672,13 @@
                 }
               }
             ],
-            "created": 1794262782,
+            "created": 1794317578,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_7a4ab09ae4",
+            "system_fingerprint": "fp_b1dd3e7a63",
             "usage": {
               "completion_tokens": 35,
               "prompt_tokens": 306,
@@ -690,15 +691,15 @@
                 "text_tokens": null
               },
               "prompt_tokens_details": null,
-              "queue_time": 0.347539677,
-              "prompt_time": 0.014577202,
-              "completion_time": 0.074599722,
-              "total_time": 0.089176924
+              "queue_time": 0.262418155,
+              "prompt_time": 0.120311044,
+              "completion_time": 0.074556082,
+              "total_time": 0.194867126
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716akyqevksqaakygmdvgc6",
-              "seed": 1689480401
+              "id": "req_01m72tjw1pe5qbjj088yh3jr1w",
+              "seed": 438534527
             }
           }
         },
@@ -708,7 +709,7 @@
           "tool_input": "http://web/token.txt",
           "observation": "LAB-TOKEN-1842",
           "raw_reply": {
-            "id": "chatcmpl-1ef2f5d4-4f10-43e1-9f52-e8a1d709b243",
+            "id": "chatcmpl-48b616bf-4402-40f3-80df-d6bd9ecb48fe",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -723,7 +724,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_b9ea5184-f46a-4359-93cc-4d8e94774ca9",
+                      "id": "fc_2df36bc4-1fef-4048-80bc-20719d087abf",
                       "function": {
                         "arguments": "{\"url\":\"http://web/token.txt\"}",
                         "name": "http_get"
@@ -731,44 +732,38 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We got token? The response says \"The token is at http://web/token.txt\". Need to fetch that."
+                  "reasoning": "We have token location. Need to fetch it."
                 }
               }
             ],
-            "created": 1794262782,
+            "created": 1794317579,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_4200b3f836",
+            "system_fingerprint": "fp_0708ac49a5",
             "usage": {
-              "completion_tokens": 51,
+              "completion_tokens": 38,
               "prompt_tokens": 342,
-              "total_tokens": 393,
+              "total_tokens": 380,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 24,
+                "reasoning_tokens": 11,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
-              "prompt_tokens_details": {
-                "audio_tokens": null,
-                "cache_write_tokens": null,
-                "cached_tokens": 256,
-                "image_tokens": null,
-                "text_tokens": null
-              },
-              "queue_time": 0.039384643,
-              "prompt_time": 0.030290321,
-              "completion_time": 0.105500704,
-              "total_time": 0.135791025
+              "prompt_tokens_details": null,
+              "queue_time": 0.170433627,
+              "prompt_time": 0.019010703,
+              "completion_time": 0.08194054,
+              "total_time": 0.100951243
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716amfwezrsgj9zgnw8r156",
-              "seed": 794698860
+              "id": "req_01m72tjwm1ekma72ehzhdawfk8",
+              "seed": 670236934
             }
           }
         },
@@ -778,7 +773,7 @@
           "tool_input": "LAB-TOKEN-1842",
           "observation": "submitted",
           "raw_reply": {
-            "id": "chatcmpl-ab77b877-a07c-4542-a4be-2c07e6e02707",
+            "id": "chatcmpl-7e1ff021-1b05-44a5-8a04-f2899d21c41e",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -793,7 +788,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_6ad5811f-ab33-4a30-8171-465f6b67f139",
+                      "id": "fc_66d53368-7a15-46c5-9536-9900e13118be",
                       "function": {
                         "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
                         "name": "submit"
@@ -801,17 +796,17 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We have token. Need to submit."
+                  "reasoning": "Now submit."
                 }
               }
             ],
-            "created": 1794262783,
+            "created": 1794317579,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_998410db10",
+            "system_fingerprint": "fp_64b2f1c926",
             "usage": {
               "completion_tokens": 35,
               "prompt_tokens": 376,
@@ -819,7 +814,7 @@
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
-                "reasoning_tokens": 9,
+                "reasoning_tokens": 4,
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
@@ -830,15 +825,15 @@
                 "image_tokens": null,
                 "text_tokens": null
               },
-              "queue_time": 0.345904183,
-              "prompt_time": 0.006243031,
-              "completion_time": 0.258801962,
-              "total_time": 0.265044993
+              "queue_time": 0.038620991,
+              "prompt_time": 0.007897847,
+              "completion_time": 0.089771836,
+              "total_time": 0.097669683
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716amrje21884wxtxjvvrjr",
-              "seed": 204165556
+              "id": "req_01m72tjwzcekv8xhrf56sbz2kx",
+              "seed": 1939878135
             }
           }
         }
@@ -855,7 +850,7 @@
           "tool_input": "http://web/",
           "observation": "The token is at http://web/token.txt",
           "raw_reply": {
-            "id": "chatcmpl-9de4facf-a5b2-46ca-b6a4-60f292c93f46",
+            "id": "chatcmpl-e079109f-37b5-4778-9e39-b1497a75d26d",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -870,7 +865,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_d20ba22c-47db-4608-a0b0-05de23479f37",
+                      "id": "fc_f1db9991-1aac-4306-911c-58b1d6dd658b",
                       "function": {
                         "arguments": "{\"url\":\"http://web/\"}",
                         "name": "http_get"
@@ -882,13 +877,13 @@
                 }
               }
             ],
-            "created": 1794262783,
+            "created": 1794317579,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_02b0d31eca",
+            "system_fingerprint": "fp_64b2f1c926",
             "usage": {
               "completion_tokens": 35,
               "prompt_tokens": 306,
@@ -900,16 +895,22 @@
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
-              "prompt_tokens_details": null,
-              "queue_time": 0.038601364,
-              "prompt_time": 0.013397964,
-              "completion_time": 0.073922551,
-              "total_time": 0.087320515
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.038123633,
+              "prompt_time": 0.008308754,
+              "completion_time": 0.073781593,
+              "total_time": 0.082090347
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716anehe1jb04ffv3wfmb6z",
-              "seed": 600067254
+              "id": "req_01m72tjx6aejsskwtp3ka6qj6z",
+              "seed": 692202242
             }
           }
         },
@@ -919,7 +920,7 @@
           "tool_input": "http://web/token.txt",
           "observation": "LAB-TOKEN-1842",
           "raw_reply": {
-            "id": "chatcmpl-6cfe565b-e164-4358-9061-34adabd25138",
+            "id": "chatcmpl-12da7361-27a0-45de-a6ae-5ab6e789951d",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -934,7 +935,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_3540f28a-35c7-482d-ad9c-d37594730589",
+                      "id": "fc_1bb6ed68-50b5-44fb-9091-35a080576013",
                       "function": {
                         "arguments": "{\"url\":\"http://web/token.txt\"}",
                         "name": "http_get"
@@ -942,17 +943,17 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We got token location. Need to fetch it."
+                  "reasoning": "We got token location. Need to fetch token."
                 }
               }
             ],
-            "created": 1794262784,
+            "created": 1794317579,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_5082008e34",
+            "system_fingerprint": "fp_49bfac06f1",
             "usage": {
               "completion_tokens": 38,
               "prompt_tokens": 342,
@@ -964,16 +965,22 @@
                 "rejected_prediction_tokens": null,
                 "text_tokens": null
               },
-              "prompt_tokens_details": null,
-              "queue_time": 0.222321776,
-              "prompt_time": 0.034521396,
-              "completion_time": 0.080844328,
-              "total_time": 0.115365724
+              "prompt_tokens_details": {
+                "audio_tokens": null,
+                "cache_write_tokens": null,
+                "cached_tokens": 256,
+                "image_tokens": null,
+                "text_tokens": null
+              },
+              "queue_time": 0.004823176,
+              "prompt_time": 0.006383789,
+              "completion_time": 0.081902664,
+              "total_time": 0.088286453
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716annnehjbrgjjyxkjqazj",
-              "seed": 1022728773
+              "id": "req_01m72tjxdse4wrp9sg1r27ynfe",
+              "seed": 1972817120
             }
           }
         },
@@ -983,7 +990,7 @@
           "tool_input": "LAB-TOKEN-1842",
           "observation": "submitted",
           "raw_reply": {
-            "id": "chatcmpl-c2690e9f-1a95-4a45-9d64-d208807bd6c4",
+            "id": "chatcmpl-e2e39d83-16f7-4ede-a4ec-7e1d02226435",
             "choices": [
               {
                 "finish_reason": "tool_calls",
@@ -998,7 +1005,7 @@
                   "function_call": null,
                   "tool_calls": [
                     {
-                      "id": "fc_bd945134-60ac-4875-a011-450d09c6497e",
+                      "id": "fc_ffebd550-953b-4019-a591-81712f7308aa",
                       "function": {
                         "arguments": "{\"answer\":\"LAB-TOKEN-1842\"}",
                         "name": "submit"
@@ -1006,21 +1013,21 @@
                       "type": "function"
                     }
                   ],
-                  "reasoning": "We have token. Need submit."
+                  "reasoning": "We have token. Now submit."
                 }
               }
             ],
-            "created": 1794262784,
+            "created": 1794317580,
             "model": "openai/gpt-oss-120b",
             "object": "chat.completion",
             "metadata": null,
             "moderation": null,
             "service_tier": "on_demand",
-            "system_fingerprint": "fp_c800245357",
+            "system_fingerprint": "fp_64b2f1c926",
             "usage": {
-              "completion_tokens": 34,
+              "completion_tokens": 39,
               "prompt_tokens": 376,
-              "total_tokens": 410,
+              "total_tokens": 415,
               "completion_tokens_details": {
                 "accepted_prediction_tokens": null,
                 "audio_tokens": null,
@@ -1035,15 +1042,15 @@
                 "image_tokens": null,
                 "text_tokens": null
               },
-              "queue_time": 0.005061682,
-              "prompt_time": 0.006524932,
-              "completion_time": 0.072615976,
-              "total_time": 0.079140908
+              "queue_time": 0.03975965,
+              "prompt_time": 0.022830031,
+              "completion_time": 0.099583405,
+              "total_time": 0.122413436
             },
             "usage_breakdown": null,
             "x_groq": {
-              "id": "req_01m716ap35e8rtpn8y4jyxrm10",
-              "seed": 47575017
+              "id": "req_01m72tjxmfewkawhs218n7sc90",
+              "seed": 415503369
             }
           }
         }

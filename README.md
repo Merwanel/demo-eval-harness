@@ -1,6 +1,7 @@
 # demo-eval-harness
 
-A harness that runs a tool-calling agent against a closed web lab and scores each trial as success, agent_failure, or harness_error.
+A harness that runs a tool-calling agent against a closed web lab and scores each trial as success, agent_failure, or harness_error. The lab task is defined in `scenario.yml`.
+
 
 ```mermaid
 sequenceDiagram
@@ -32,7 +33,7 @@ sequenceDiagram
 
 A rate limit and a broken connection are not model failures, and counting them as such makes the success rate move for the wrong reason.
 
-One campaign against `openai/gpt-oss-120b`: **5 / 5** successes, 0 agent failures, 0 harness errors. See [`campaigns/2026-11-09-openai-gpt-oss-120b.json`](campaigns/2026-11-09-openai-gpt-oss-120b.json).
+One campaign against `openai/gpt-oss-120b`: recorded in [`campaigns/2026-11-10-openai-gpt-oss-120b.json`](campaigns/2026-11-10-openai-gpt-oss-120b.json).
 
 ```bash
 export GROQ_API_KEY=...          # required
@@ -44,6 +45,6 @@ python -m harness.runner --model "$GROQ_MODEL"
 
 CI runs the unit tests without a key.
 
-Isolation: the lab sits on a private Docker network with no published port; `http_get` may fetch only host `web`.
+Isolation: the lab sits on a private Docker network with no published port; the get tool may fetch only the host Ansible brings up with Nginx.
 
 Tests live under `tests/` and cover the URL check and the reply normalizer.

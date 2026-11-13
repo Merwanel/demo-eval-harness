@@ -1,18 +1,34 @@
 ---
-- name: Tear down the web lab
+- name: Tear down the lab from scenario.yml
   hosts: localhost
   connection: local
   gather_facts: false
   vars:
+    ansible_python_interpreter: "{{ playbook_dir }}/../.venv/bin/python"
     lab_network: lab
+    scenario_path: "{{ playbook_dir }}/../scenario.yml"
+    stage_root: /tmp/demo-eval-harness-lab
   tasks:
-    - name: Remove the web container
+    - name: Load scenario.yml
+      ansible.builtin.include_vars:
+        file: "{{ scenario_path }}"
+        name: scenario
+
+    - name: Remove each host container
       community.docker.docker_container:
-        name: web
+        name: "{{ item.name }}"
         state: absent
+      loop: "{{ scenario.hosts }}"
+      loop_control:
+        label: "{{ item.name }}"
 
     - name: Remove the lab Docker network
       community.docker.docker_network:
         name: "{{ lab_network }}"
         state: absent
         force: true
+
+    - name: Remove the staging root
+      ansible.builtin.file:
+        path: "{{ stage_root }}"
+        state: absent

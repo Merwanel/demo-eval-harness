@@ -11,13 +11,8 @@ from pathlib import Path
 from typing import Any
 
 from harness.agent import make_client, provider_name, run_trial
-from harness.constants import (
-    LAB_NETWORK,
-    RUNNER_IMAGE,
-    SCENARIO_ID,
-    STEP_LIMIT,
-    TRIAL_COUNT,
-)
+from harness.constants import LAB_NETWORK, RUNNER_IMAGE
+from harness.scenario import Scenario, load_scenario
 
 ROOT = Path(__file__).resolve().parents[1]
 ANSIBLE_UP = ROOT / "ansible" / "up.yml"
@@ -53,7 +48,20 @@ def write_campaign(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
-def run_campaign_inner(*, model: str, trials: int, step_limit: int) -> dict[str, Any]:
+def empty_campaign(scenario: Scenario, model: str, trials: int) -> dict[str, Any]:
+    return {
+        "scenario": scenario.id,
+        "provider": provider_name(),
+        "model": model,
+        "trials": trials,
+        "successes": 0,
+        "agent_failures": 0,
+        "harness_errors": 0,
+        "runs": [],
+    }
+
+
+def run_campaign_inner(*, model: str, scenario: Scenario, trials: int) -> dict[str, Any]:
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
         raise SystemExit("GROQ_API_KEY is required")
@@ -61,7 +69,7 @@ def run_campaign_inner(*, model: str, trials: int, step_limit: int) -> dict[str,
     client = make_client(api_key)
     runs: list[dict[str, Any]] = []
     for index in range(1, trials + 1):
-        result = run_trial(client, model, step_limit=step_limit)
+        result = run_trial(client, model, scenario)
         runs.append(
             {
                 "trial": index,
@@ -73,7 +81,7 @@ def run_campaign_inner(*, model: str, trials: int, step_limit: int) -> dict[str,
 
     counts = derive_counts(runs)
     return {
-        "scenario": SCENARIO_ID,
+        "scenario": scenario.id,
         "provider": provider_name(),
         "model": model,
         "trials": trials,
@@ -95,18 +103,6 @@ def main(argv: list[str] | None = None) -> int:
         help=argparse.SUPPRESS,
     )
     parser.add_argument(
-        "--trials",
-        type=int,
-        default=TRIAL_COUNT,
-        help=argparse.SUPPRESS,
-    )
-    parser.add_argument(
-        "--step-limit",
-        type=int,
-        default=STEP_LIMIT,
-        help=argparse.SUPPRESS,
-    )
-    parser.add_argument(
         "--keep",
         action="store_true",
         help="Leave the lab container up after the campaign",
@@ -121,24 +117,16 @@ def main(argv: list[str] | None = None) -> int:
     if not args.model:
         parser.error("model id required via --model or GROQ_MODEL")
 
-    trials = 1 if args.smoke else args.trials
+    scenario = load_scenario()
+    trials = 1 if args.smoke else scenario.trial_count
 
     if args.inner:
-        campaign: dict[str, Any] = {
-            "scenario": SCENARIO_ID,
-            "provider": provider_name(),
-            "model": args.model,
-            "trials": trials,
-            "successes": 0,
-            "agent_failures": 0,
-            "harness_errors": 0,
-            "runs": [],
-        }
+        campaign = empty_campaign(scenario, args.model, trials)
         try:
             campaign = run_campaign_inner(
                 model=args.model,
+                scenario=scenario,
                 trials=trials,
-                step_limit=args.step_limit,
             )
         finally:
             write_campaign(Path("/app/campaign.json"), campaign)
@@ -158,23 +146,8 @@ def main(argv: list[str] | None = None) -> int:
 
     # Host path: ensure the output file exists so docker can bind-mount it.
     if not CAMPAIGN_PATH.exists():
-        write_campaign(
-            CAMPAIGN_PATH,
-            {
-                "scenario": SCENARIO_ID,
-                "provider": provider_name(),
-                "model": args.model,
-                "trials": trials,
-                "successes": 0,
-                "agent_failures": 0,
-                "harness_errors": 0,
-                "runs": [],
-            },
-        )
+        write_campaign(CAMPAIGN_PATH, empty_campaign(scenario, args.model, trials))
 
-    # Smoke and full campaigns share the orchestrator; smoke overrides trial count
-    # by rewriting the inner invocation through an env var the image reads… simpler:
-    # rebuild args for docker. For smoke, call docker with --smoke.
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
         raise SystemExit("GROQ_API_KEY is required")
@@ -187,6 +160,7 @@ def main(argv: list[str] | None = None) -> int:
         # Pass -e GROQ_API_KEY with no value so Docker copies it from the host
         # environment; the key never appears in argv (or in CalledProcessError).
         # Image ENTRYPOINT is already `python -m harness.runner`, so only flags follow.
+        # Trial count and step limit come from scenario.yml inside the container.
         inner_args = [
             "run",
             "--rm",
@@ -202,11 +176,9 @@ def main(argv: list[str] | None = None) -> int:
             "--inner",
             "--model",
             args.model,
-            "--trials",
-            str(trials),
-            "--step-limit",
-            str(args.step_limit),
         ]
+        if args.smoke:
+            inner_args.append("--smoke")
         _docker(*inner_args)
     finally:
         # Persist is handled inside the container; host still tears down.

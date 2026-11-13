@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import time
 from pathlib import Path
 from typing import Any
@@ -10,18 +9,14 @@ from typing import Any
 from openai import APIConnectionError, APIStatusError, OpenAI, RateLimitError
 
 from harness.constants import (
-    EXPECTED_ANSWER,
-    GOAL,
     GROQ_BASE_URL,
     PROVIDER,
     REASONING_EFFORT,
     RETRY_MAX_CONSECUTIVE_429,
     RETRY_MAX_WAIT_SECONDS,
-    START_URL,
-    STEP_LIMIT,
-    TOOLS,
 )
 from harness.normalize import NormalizeError, normalize_reply
+from harness.scenario import Scenario
 from harness.tools import parse_tool_arguments, run_tool
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,13 +55,13 @@ TOOL_SCHEMAS = [
 ]
 
 
-def load_system_prompt() -> str:
+def load_system_prompt(scenario: Scenario) -> str:
     text = PROMPT_PATH.read_text(encoding="utf-8")
-    # Prompt file is the reviewable wording; constants stay the source of the
+    # Prompt file is the reviewable wording; scenario.yml is the source of the
     # values the rest of the harness scores against.
-    if GOAL not in text or START_URL not in text:
+    if scenario.goal not in text or scenario.start_url not in text:
         raise RuntimeError("prompts/agent.txt must state the goal and start URL")
-    for name in TOOLS:
+    for name in scenario.tools:
         if name not in text:
             raise RuntimeError(f"prompts/agent.txt must mention tool {name}")
     return text
@@ -135,20 +130,20 @@ def call_model(client: OpenAI, model: str, messages: list[dict[str, Any]]) -> An
             raise
 
 
-def run_trial(client: OpenAI, model: str, *, step_limit: int = STEP_LIMIT) -> dict[str, Any]:
+def run_trial(client: OpenAI, model: str, scenario: Scenario) -> dict[str, Any]:
     """Run one trial. Returns a run record with outcome, answer, and steps."""
-    system_prompt = load_system_prompt()
+    system_prompt = load_system_prompt(scenario)
     messages: list[dict[str, Any]] = [
         {"role": "system", "content": system_prompt},
         {
             "role": "user",
-            "content": f"{GOAL} Start at {START_URL}.",
+            "content": f"{scenario.goal} Start at {scenario.start_url}.",
         },
     ]
     steps: list[dict[str, Any]] = []
 
     try:
-        for _ in range(step_limit):
+        for _ in range(scenario.step_limit):
             try:
                 reply = call_model(client, model, messages)
             except (APIStatusError, APIConnectionError, RuntimeError, OSError) as exc:
@@ -180,7 +175,7 @@ def run_trial(client: OpenAI, model: str, *, step_limit: int = STEP_LIMIT) -> di
                         model_response = ""
                 observation = (
                     f"error: {exc}. Call exactly one tool "
-                    f"({', '.join(TOOLS)}) per turn."
+                    f"({', '.join(scenario.tools)}) per turn."
                 )
                 steps.append(
                     {
@@ -218,7 +213,7 @@ def run_trial(client: OpenAI, model: str, *, step_limit: int = STEP_LIMIT) -> di
 
             if submitted is not None:
                 outcome = (
-                    "success" if submitted == EXPECTED_ANSWER else "agent_failure"
+                    "success" if submitted == scenario.check else "agent_failure"
                 )
                 return {"outcome": outcome, "answer": submitted, "steps": steps}
 
