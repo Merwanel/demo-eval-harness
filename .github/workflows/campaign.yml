@@ -33,7 +33,7 @@ jobs:
             echo "::warning::GROQ_API_KEY is not set; skipping the campaign. Add the repository secret to run trials against Groq."
             exit 0
           fi
-          .venv/bin/python -m harness.runner --model "$GROQ_MODEL"
+          .venv/bin/python run_campaign.py --model "$GROQ_MODEL"
 
 
       - name: Upload campaign.json

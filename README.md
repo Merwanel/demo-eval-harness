@@ -33,7 +33,7 @@ pip install -r requirements-host.txt
 ansible-galaxy collection install community.docker
 export GROQ_API_KEY=...          # required
 export GROQ_MODEL=openai/gpt-oss-120b
-python -m harness.runner --model "$GROQ_MODEL"
+python run_campaign.py --model "$GROQ_MODEL"
 ```
 
 ## Outcomes
