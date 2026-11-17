@@ -6,6 +6,7 @@
   vars:
     ansible_python_interpreter: "{{ playbook_dir }}/../.venv/bin/python"
     lab_network: lab
+    egress_network: egress
     scenario_path: "{{ playbook_dir }}/../scenario.yml"
     stage_root: /tmp/demo-eval-harness-lab
   tasks:
@@ -25,6 +26,12 @@
     - name: Remove the lab Docker network
       community.docker.docker_network:
         name: "{{ lab_network }}"
+        state: absent
+        force: true
+
+    - name: Remove the egress Docker network
+      community.docker.docker_network:
+        name: "{{ egress_network }}"
         state: absent
         force: true
 

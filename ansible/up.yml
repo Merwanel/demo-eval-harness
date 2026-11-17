@@ -6,6 +6,7 @@
   vars:
     ansible_python_interpreter: "{{ playbook_dir }}/../.venv/bin/python"
     lab_network: lab
+    egress_network: egress
     lab_dir: "{{ playbook_dir }}/../lab"
     scenario_path: "{{ playbook_dir }}/../scenario.yml"
     stage_root: /tmp/demo-eval-harness-lab
@@ -16,8 +17,18 @@
         name: scenario
 
     - name: Ensure the lab Docker network exists
+      # internal: no gateway, so lab hosts can neither reach the internet nor
+      # each other's egress. Only the runner is dual-homed onto egress.
       community.docker.docker_network:
         name: "{{ lab_network }}"
+        internal: true
+        state: present
+
+    - name: Ensure the egress Docker network exists
+      # Gives the runner a route to the model API while it is attached to the
+      # isolated lab network. No lab host is ever joined to this network.
+      community.docker.docker_network:
+        name: "{{ egress_network }}"
         state: present
 
     - name: Clear staging root

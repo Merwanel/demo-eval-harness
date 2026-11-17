@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from harness.agent import make_client, provider_name, run_trial
-from harness.constants import LAB_NETWORK, RUNNER_IMAGE
+from harness.constants import EGRESS_NETWORK, LAB_NETWORK, RUNNER_IMAGE
 from harness.scenario import Scenario, load_scenario
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -164,6 +164,10 @@ def main(argv: list[str] | None = None) -> int:
         inner_args = [
             "run",
             "--rm",
+            # egress first so the runner keeps a default route to the model API;
+            # lab is internal (no gateway) and only provides the target hosts.
+            "--network",
+            EGRESS_NETWORK,
             "--network",
             LAB_NETWORK,
             "-e",

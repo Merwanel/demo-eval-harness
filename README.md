@@ -24,6 +24,19 @@ sequenceDiagram
     end
     Runner->>Runner: write campaign.json
 ```
+## How to run it
+
+```bash
+python -m venv .venv
+. .venv/bin/activate
+pip install -r requirements-host.txt
+ansible-galaxy collection install community.docker
+export GROQ_API_KEY=...          # required
+export GROQ_MODEL=openai/gpt-oss-120b
+python -m harness.runner --model "$GROQ_MODEL"
+```
+
+## Outcomes
 
 | Outcome | Meaning |
 | --- | --- |
@@ -35,16 +48,8 @@ A rate limit and a broken connection are not model failures, and counting them a
 
 One campaign against `openai/gpt-oss-120b`: recorded in [`campaigns/2026-11-10-openai-gpt-oss-120b.json`](campaigns/2026-11-10-openai-gpt-oss-120b.json).
 
-```bash
-export GROQ_API_KEY=...          # required
-export GROQ_MODEL=openai/gpt-oss-120b
-pip install -r requirements-host.txt
-ansible-galaxy collection install community.docker
-python -m harness.runner --model "$GROQ_MODEL"
-```
+Isolation: the lab sits on an `internal` Docker network — no published port and no gateway — so lab hosts cannot reach the internet or resolve anything outside `lab`. The get tool may fetch only the host Ansible brings up with Nginx. The runner is dual-homed onto a separate network so it can still reach the model API.
 
 CI runs the unit tests without a key.
-
-Isolation: the lab sits on a private Docker network with no published port; the get tool may fetch only the host Ansible brings up with Nginx.
 
 Tests live under `tests/` and cover the URL check and the reply normalizer.
