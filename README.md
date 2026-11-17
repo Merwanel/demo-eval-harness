@@ -22,7 +22,7 @@ sequenceDiagram
             Runner->>Runner: score answer and stop
         end
     end
-    Runner->>Runner: write campaign.json
+    Runner->>Runner: write campaigns/<date>_<hour>_<model>.json
 ```
 ## How to run it
 

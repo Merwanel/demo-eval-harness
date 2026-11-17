@@ -3,8 +3,8 @@ api_key_grok
 api_key_*
 .env
 
-# The runner's own output. Kept campaigns live in campaigns/ instead.
-campaign.json
+campaigns/*.json
+
 
 # Python
 __pycache__/

@@ -36,10 +36,10 @@ jobs:
           .venv/bin/python run_campaign.py --model "$GROQ_MODEL"
 
 
-      - name: Upload campaign.json
-        if: hashFiles('campaign.json') != ''
+      - name: Upload campaign artifact
         uses: actions/upload-artifact@v4
         with:
           name: campaign-json
-          path: campaign.json
+          path: campaigns/*_*_*.json
           if-no-files-found: ignore
+

@@ -5,8 +5,10 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from harness.campaign import derive_counts, empty_campaign, write_campaign
@@ -15,12 +17,21 @@ from harness.scenario import load_scenario
 ROOT = Path(__file__).resolve().parent
 ANSIBLE_UP = ROOT / "ansible" / "up.yml"
 ANSIBLE_DOWN = ROOT / "ansible" / "down.yml"
-CAMPAIGN_PATH = ROOT / "campaign.json"
+CAMPAIGNS_DIR = ROOT / "campaigns"
 SCENARIO_PATH = ROOT / "scenario.yml"
 
 LAB_NETWORK = "lab"
 EGRESS_NETWORK = "egress"
 RUNNER_IMAGE = "demo-eval-harness-runner"
+
+
+def campaign_path_for(model: str, when: datetime | None = None) -> Path:
+    """campaigns/<date>_<hour>_<model>.json — model slashes become hyphens."""
+    stamp = when or datetime.now(timezone.utc)
+    date = stamp.strftime("%Y-%m-%d")
+    hour = stamp.strftime("%H%M")
+    safe_model = re.sub(r"[^\w.-]+", "-", model).strip("-")
+    return CAMPAIGNS_DIR / f"{date}_{hour}_{safe_model}.json"
 
 
 def _ansible_playbook(playbook: Path) -> None:
@@ -62,10 +73,11 @@ def main(argv: list[str] | None = None) -> int:
 
     scenario = load_scenario(SCENARIO_PATH)
     trials = 1 if args.smoke else scenario.trial_count
+    campaign_path = campaign_path_for(args.model)
 
-    # Ensure the output file exists so docker can bind-mount it.
-    if not CAMPAIGN_PATH.exists():
-        write_campaign(CAMPAIGN_PATH, empty_campaign(scenario, args.model, trials))
+    # File must exist before docker can bind-mount it.
+    CAMPAIGNS_DIR.mkdir(parents=True, exist_ok=True)
+    write_campaign(campaign_path, empty_campaign(scenario, args.model, trials))
 
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
@@ -90,7 +102,7 @@ def main(argv: list[str] | None = None) -> int:
             "-e",
             f"GROQ_MODEL={args.model}",
             "-v",
-            f"{CAMPAIGN_PATH}:/app/campaign.json",
+            f"{campaign_path}:/app/campaign.json",
             RUNNER_IMAGE,
             "--model",
             args.model,
@@ -105,11 +117,11 @@ def main(argv: list[str] | None = None) -> int:
             except Exception as exc:  # noqa: BLE001
                 print(f"warning: lab teardown failed: {exc}", file=sys.stderr)
 
-    if CAMPAIGN_PATH.exists():
-        summary = json.loads(CAMPAIGN_PATH.read_text(encoding="utf-8"))
+    if campaign_path.exists():
+        summary = json.loads(campaign_path.read_text(encoding="utf-8"))
         counts = derive_counts(summary.get("runs", []))
         print(
-            f"campaign written to {CAMPAIGN_PATH} "
+            f"campaign written to {campaign_path} "
             f"(successes={counts['successes']}, "
             f"agent_failures={counts['agent_failures']}, "
             f"harness_errors={counts['harness_errors']})"
