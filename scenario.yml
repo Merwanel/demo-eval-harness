@@ -8,5 +8,5 @@ tools:
   - http_get
   - submit
 start_url: http://app/
-trial_count: 2
-step_limit: 1
+trial_count: 5
+step_limit: 12
