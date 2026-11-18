@@ -17,8 +17,8 @@
         name: scenario
 
     - name: Ensure the lab Docker network exists
-      # internal: no gateway, so lab hosts can neither reach the internet nor
-      # each other's egress. Only the runner is dual-homed onto egress.
+      # internal: Docker drops egress from this network, so lab hosts cannot reach
+      # the internet. Only the runner is dual-homed onto egress.
       community.docker.docker_network:
         name: "{{ lab_network }}"
         internal: true

@@ -48,7 +48,7 @@ A rate limit and a broken connection are not model failures, and counting them a
 
 One campaign against `openai/gpt-oss-120b`: recorded in [`campaigns/2026-11-10-openai-gpt-oss-120b.json`](campaigns/2026-11-10-openai-gpt-oss-120b.json).
 
-Isolation: the lab sits on an `internal` Docker network — no published port and no gateway — so lab hosts cannot reach the internet or resolve anything outside `lab`. The get tool may fetch only the host Ansible brings up with Nginx. The runner is dual-homed onto a separate network so it can still reach the model API.
+Isolation: the lab sits on an `internal` Docker network — no published port and no route off the network — so lab hosts cannot reach the internet or resolve anything outside `lab`. The get tool may fetch only the host Ansible brings up with Nginx. The runner is dual-homed onto a separate network so it can still reach the model API.
 
 CI runs the unit tests without a key.
 

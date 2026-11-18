@@ -92,7 +92,7 @@ def main(argv: list[str] | None = None) -> int:
             "run",
             "--rm",
             # egress first so the runner keeps a default route to the model API;
-            # lab is internal (no gateway) and only provides the target hosts.
+            # lab is internal (no route off it) and only provides the target hosts.
             "--network",
             EGRESS_NETWORK,
             "--network",
