@@ -7,28 +7,29 @@ import unittest
 from harness.urlcheck import check_http_get_url
 
 PASS = [
-    "http://web/",
-    "http://web",
-    "http://web/token.txt",
-    "http://web:80/",
-    "http://web:80/token.txt",
-    "http://web/path?q=1",
+    "http://app/",
+    "http://app",
+    "http://app/?name=x",
+    "http://app:80/",
+    "http://app:80/?name=x",
+    "http://app/path?q=1",
 ]
 
 FAIL = [
     "",
-    "https://web/",
-    "http://web.example.com/",
-    "http://web@elsewhere/",
+    "https://app/",
+    "http://app.example.com/",
+    "http://app@elsewhere/",
     "http://elsewhere/",
     "http://127.0.0.1/",
     "http://localhost/",
-    "http://web:8080/",
-    "http://web:443/",
-    "ftp://web/",
-    "web/",
-    "//web/",
-    "http://user:pass@web/",
+    "http://web/",
+    "http://app:8080/",
+    "http://app:443/",
+    "ftp://app/",
+    "app/",
+    "//app/",
+    "http://user:pass@app/",
 ]
 
 

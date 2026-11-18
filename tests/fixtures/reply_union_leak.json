@@ -1,0 +1,25 @@
+{
+  "id": "chatcmpl-fixture-union-leak",
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "message": {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_union_leak",
+            "type": "function",
+            "function": {
+              "name": "http_get",
+              "arguments": "{\"url\":\"http://app/?name=' UNION SELECT name FROM secret_table--\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "model": "fixture",
+  "object": "chat.completion"
+}

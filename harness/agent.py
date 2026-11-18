@@ -39,13 +39,13 @@ TOOL_SCHEMAS = [
         "type": "function",
         "function": {
             "name": "submit",
-            "description": "End the trial by reporting the lab token exactly.",
+            "description": "End the trial by reporting the lab secret exactly.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "answer": {
                         "type": "string",
-                        "description": "The exact lab token string",
+                        "description": "The exact lab secret string",
                     }
                 },
                 "required": ["answer"],

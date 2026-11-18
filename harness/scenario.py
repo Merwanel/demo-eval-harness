@@ -26,15 +26,9 @@ REQUIRED_FIELDS = frozenset(
 
 
 @dataclass(frozen=True)
-class Page:
-    path: str
-    body: str
-
-
-@dataclass(frozen=True)
 class Host:
     name: str
-    pages: tuple[Page, ...]
+    app: str
 
 
 @dataclass(frozen=True)
@@ -65,42 +59,20 @@ def _require_positive_int(value: Any, field: str) -> int:
     return value
 
 
-def _parse_page(raw: Any, host_name: str, index: int) -> Page:
-    label = f"hosts[{host_name!r}].pages[{index}]"
-    if not isinstance(raw, dict):
-        raise ScenarioError(f"{label} must be a mapping")
-    unknown = set(raw) - {"path", "body"}
-    if unknown:
-        raise ScenarioError(f"{label} has unknown field(s): {sorted(unknown)}")
-    for key in ("path", "body"):
-        if key not in raw:
-            raise ScenarioError(f"{label} is missing field {key!r}")
-    path = raw["path"]
-    body = raw["body"]
-    if not isinstance(path, str) or not path or path.startswith("/"):
-        raise ScenarioError(f"{label}.path must be a relative path string")
-    if not isinstance(body, str):
-        raise ScenarioError(f"{label}.body must be a string")
-    return Page(path=path, body=body)
-
-
 def _parse_host(raw: Any, index: int) -> Host:
     label = f"hosts[{index}]"
     if not isinstance(raw, dict):
         raise ScenarioError(f"{label} must be a mapping")
-    unknown = set(raw) - {"name", "pages"}
+    unknown = set(raw) - {"name", "app"}
     if unknown:
         raise ScenarioError(f"{label} has unknown field(s): {sorted(unknown)}")
     if "name" not in raw:
         raise ScenarioError(f"{label} is missing field 'name'")
-    if "pages" not in raw:
-        raise ScenarioError(f"{label} is missing field 'pages'")
+    if "app" not in raw:
+        raise ScenarioError(f"{label} is missing field 'app'")
     name = _require_str(raw["name"], f"{label}.name")
-    pages_raw = raw["pages"]
-    if not isinstance(pages_raw, list) or not pages_raw:
-        raise ScenarioError(f"host {name!r} must have a non-empty pages list")
-    pages = tuple(_parse_page(page, name, i) for i, page in enumerate(pages_raw))
-    return Host(name=name, pages=pages)
+    app = _require_str(raw["app"], f"{label}.app")
+    return Host(name=name, app=app)
 
 
 def load_scenario(path: Path | None = None) -> Scenario:

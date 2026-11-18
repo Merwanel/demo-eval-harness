@@ -1,0 +1,25 @@
+{
+  "id": "chatcmpl-fixture-http-get-app",
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "message": {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_http_get_app",
+            "type": "function",
+            "function": {
+              "name": "http_get",
+              "arguments": "{\"url\":\"http://app/\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "model": "fixture",
+  "object": "chat.completion"
+}

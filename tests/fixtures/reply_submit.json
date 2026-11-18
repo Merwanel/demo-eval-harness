@@ -1,0 +1,25 @@
+{
+  "id": "chatcmpl-fixture-submit",
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "message": {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_submit",
+            "type": "function",
+            "function": {
+              "name": "submit",
+              "arguments": "{\"answer\":\"LAB-SECRET-42\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "model": "fixture",
+  "object": "chat.completion"
+}

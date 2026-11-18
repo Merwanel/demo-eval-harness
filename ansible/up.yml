@@ -7,7 +7,6 @@
     ansible_python_interpreter: "{{ playbook_dir }}/../.venv/bin/python"
     lab_network: lab
     egress_network: egress
-    lab_dir: "{{ playbook_dir }}/../lab"
     scenario_path: "{{ playbook_dir }}/../scenario.yml"
     stage_root: /tmp/demo-eval-harness-lab
   tasks:
@@ -44,30 +43,21 @@
 
     - name: Stage each host build directory
       ansible.builtin.file:
-        path: "{{ stage_root }}/{{ item.name }}/pages"
+        path: "{{ stage_root }}/{{ item.name }}"
         state: directory
         mode: "0755"
       loop: "{{ scenario.hosts }}"
       loop_control:
         label: "{{ item.name }}"
 
-    - name: Copy the Nginx image definition into each host stage
+    - name: Copy each host app into its stage
       ansible.builtin.copy:
-        src: "{{ lab_dir }}/{{ item.1 }}"
-        dest: "{{ stage_root }}/{{ item.0.name }}/{{ item.1 }}"
+        src: "{{ playbook_dir }}/../{{ item.app }}/"
+        dest: "{{ stage_root }}/{{ item.name }}/"
         mode: "0644"
-      loop: "{{ scenario.hosts | product(['Dockerfile', 'nginx.conf']) | list }}"
+      loop: "{{ scenario.hosts }}"
       loop_control:
-        label: "{{ item.0.name }}/{{ item.1 }}"
-
-    - name: Write pages from scenario.yml
-      ansible.builtin.copy:
-        content: "{{ item.1.body }}"
-        dest: "{{ stage_root }}/{{ item.0.name }}/pages/{{ item.1.path }}"
-        mode: "0644"
-      loop: "{{ scenario.hosts | subelements('pages') }}"
-      loop_control:
-        label: "{{ item.0.name }}/{{ item.1.path }}"
+        label: "{{ item.name }}/{{ item.app }}"
 
     - name: Build an image for each host
       community.docker.docker_image:

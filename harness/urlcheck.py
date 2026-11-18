@@ -8,9 +8,9 @@ from urllib.parse import urlparse
 def check_http_get_url(url: str) -> str | None:
     """Return None when *url* may be fetched; otherwise an error observation.
 
-    Allowed: scheme ``http``, host exactly ``web``, port empty or 80.
-    Parsing is used instead of a string prefix so ``web.example.com`` and
-    ``web@elsewhere`` cannot slip through.
+    Allowed: scheme ``http``, host exactly ``app``, port empty or 80.
+    Parsing is used instead of a string prefix so ``app.example.com`` and
+    ``app@elsewhere`` cannot slip through.
     """
     if not isinstance(url, str) or not url:
         return "http_get error: url must be a non-empty string"
@@ -21,10 +21,10 @@ def check_http_get_url(url: str) -> str | None:
 
     if parsed.scheme != "http":
         return "http_get error: scheme must be http"
-    if parsed.hostname != "web":
-        return "http_get error: host must be exactly web"
+    if parsed.hostname != "app":
+        return "http_get error: host must be exactly app"
     if parsed.port not in (None, 80):
         return "http_get error: port must be empty or 80"
     if parsed.username is not None or parsed.password is not None:
-        return "http_get error: host must be exactly web"
+        return "http_get error: host must be exactly app"
     return None

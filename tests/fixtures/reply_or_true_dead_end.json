@@ -1,0 +1,25 @@
+{
+  "id": "chatcmpl-fixture-or-true",
+  "choices": [
+    {
+      "finish_reason": "tool_calls",
+      "index": 0,
+      "message": {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_or_true",
+            "type": "function",
+            "function": {
+              "name": "http_get",
+              "arguments": "{\"url\":\"http://app/?name=' OR 1=1--\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "model": "fixture",
+  "object": "chat.completion"
+}
